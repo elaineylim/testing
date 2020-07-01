@@ -73,7 +73,7 @@
               :labelID="'beanName'"
               :inputType="'text'"
               :model="bean"
-              @input="bean=$event"
+              @input="setBean($event)"
               :disabled="false"
             />
             <i class="fas fa-globe-asia absolute top-0 text-gray-500 right-0 p-3"></i>
@@ -82,7 +82,7 @@
             <selectElement
               :labelName="'ROAST LEVEL'"
               :model="roastLevel"
-              @select="roastLevel=$event"
+              @select="setRoastLevel($event)"
             >
               <template v-slot:select-options>
                 <option v-for="roast in roastLevelList" :key="roast" :value="roast">{{roast}}</option>
@@ -95,7 +95,7 @@
               :labelId="'weightPerPack'"
               :inputType="'text'"
               :model="weightPerPack"
-              @input="weightPerPack=$event"
+              @input="setweightPerPack($event)"
               :disabled="false"
             />
             <i class="fas fa-globe-asia absolute top-0 text-gray-500 right-0 p-3"></i>
@@ -106,7 +106,7 @@
               :labelId="'weightBeforeRoast'"
               :inputType="'text'"
               :model="weightBeforeRoast"
-              @input="weightBeforeRoast=$event"
+              @input="setWeightBeforeRoast($event)"
               :disabled="false"
             />
             <i class="fas fa-globe-asia absolute top-0 text-gray-500 right-0 p-3"></i>
@@ -117,7 +117,7 @@
               :labelId="'weightAfterRoast'"
               :inputType="'text'"
               :model="weightAfterRoast"
-              @input="weightAfterRoast=$event"
+              @input="setWeightAfterRoast($event)"
               :disabled="false"
             />
             <i class="fas fa-globe-asia absolute top-0 text-gray-500 right-0 p-3"></i>
@@ -128,7 +128,7 @@
               :labelId="'profile'"
               :inputType="'text'"
               :model="profile"
-              @input="profile=$event"
+              @input="setProfile($event)"
               :disabled="false"
             />
             <i class="fas fa-globe-asia absolute top-0 text-gray-500 right-0 p-3"></i>
@@ -152,6 +152,8 @@
 import ContentCard from "~/components/items/ContentCard.vue";
 import InputElement from "~/components/items/Input.vue";
 import SelectElement from "~/components/items/Select.vue";
+import { mapState, mapMutations } from "vuex";
+
 export default {
   layout: "dashboard",
   components: {
@@ -159,7 +161,19 @@ export default {
     InputElement,
     SelectElement
   },
-  data() {
+  computed: {
+    ...mapState({
+      bean: state => state.product.bean,
+      roastLevel: state => state.product.rastLevel,
+      roastLevelList: state => state.product.roastLevelList,
+      weightPerPack: state => state.product.weightPerPack,
+      weightBeforeRoast: state => state.product.weightBeforeRoast,
+      weightAfterRoast: state => state.product.weightAfterRoast,
+      profile: state => state.product.profile,
+      selectedStock: state => state.product.selectedStock
+    })
+  },
+  /*data() {
     return {
       bean: "",
       roastLevel: "",
@@ -173,13 +187,22 @@ export default {
         purchasedStock: 15
       }
     };
-  },
+  },*/
   filters: {
     prettyAmount(amount) {
       return parseFloat(amount).toFixed(2);
     }
   },
   methods: {
+    ...mapMutations({
+      resetStore: "product/resetStore",
+      setBean: "product/setBean",
+      setRoastLevel: "product/setRoastLevel",
+      setWeightPerPack: "product/setWeightPerPack",
+      setWeightBeforeRoast: "product/setWeightBeforeRoast",
+      setWeightAfterRoast: "product/setWeightAfterRoast",
+      setProfile: "product/setProfile"
+    }),
     waterLose() {
       let wL =
         this.weightAfterRoast && this.weightBeforeRoast
@@ -217,6 +240,9 @@ export default {
       let packs = parseInt(this.weightAfterRoast / (this.weightPerPack / 1000));
       return packs;
     }
+  },
+  beforeDestroy() {
+    this.resetStore();
   }
 };
 </script>
