@@ -27,7 +27,8 @@ const chartColors = {
   green: "rgb(75, 192, 192)",
   blue: "rgb(54, 162, 235)",
   purple: "rgb(153, 102, 255)",
-  grey: "rgb(201, 203, 207)"
+  grey: "rgb(201, 203, 207)",
+  teal: "rgb(0, 153, 76)"
 };
 
 export default {
@@ -49,45 +50,16 @@ export default {
   data() {
     return {
       revenueMonthly: {
-        barChartData: {
-          labels: ["Jan", "Feb", "Mar", "Apr", "May"],
-          datasets: [
-            {
-              label: "Income",
-              backgroundColor: [
-                chartColors.green,
-                chartColors.green,
-                chartColors.green,
-                chartColors.green,
-                chartColors.green
-              ],
-              data: [5, 3, 4, 6, 4]
-            }
-          ]
-        },
-
-        barChartOptions: {
-          responsive: true,
-          legend: {
-            display: false
-          },
-          title: {
-            display: true,
-            text: "Monthly Income"
-          },
-          scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: true,
-                  suggestedMax: 10
-                }
-              }
-            ]
-          }
-        }
+        barChartData: {},
+        barChartOptions: {}
       }
     };
+  },
+
+  async mounted() {
+    await this.$apis.dashboard.revenue().then(res => {
+      this.revenueMonthly = res;
+    });
   }
 };
 </script>

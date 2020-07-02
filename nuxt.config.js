@@ -45,7 +45,11 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [
+    {
+      src: "~/plugins/apiFactory.js"
+    }
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -66,7 +70,9 @@ module.exports = {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: process.env.BASE_URL || "http://localhost:4000"
+  },
   /*
    ** Build configuration
    */
