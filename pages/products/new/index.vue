@@ -128,7 +128,7 @@
               :labelId="'weightPerPack'"
               :inputType="'text'"
               :model="weightPerPack"
-              @input="setweightPerPack($event)"
+              @input="setWeightPerPack($event)"
               :disabled="false"
             />
             <i
