@@ -39,3 +39,11 @@ export const mutations = {
     state.profile = profile;
   }
 };
+
+export const actions = {
+  async createProduct({ state, commit }) {
+    await this.$apis.product.new(state);
+    commit("resetStore"); // Reset the State
+    this.$router.push("/products"); //Move back to product page
+  }
+};
