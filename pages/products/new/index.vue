@@ -205,7 +205,7 @@ export default {
   computed: {
     ...mapState({
       bean: state => state.product.bean,
-      roastLevel: state => state.product.rastLevel,
+      roastLevel: state => state.product.roastLevel,
       roastLevelList: state => state.product.roastLevelList,
       weightPerPack: state => state.product.weightPerPack,
       weightBeforeRoast: state => state.product.weightBeforeRoast,
@@ -256,7 +256,7 @@ export default {
     },
     stockPerKg() {
       let spKG =
-        Object.keys(this.selectedStock).lengt > 0
+        Object.keys(this.selectedStock).length > 0
           ? this.selectedStock.price / this.selectedStock.purchasedStock
           : 0.0;
       return spKG;
