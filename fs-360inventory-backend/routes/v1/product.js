@@ -17,6 +17,37 @@ router.post(
     }
   })
 );
+
+router.get("/all", async function(req, res, next) {
+  try {
+    const productList = await getAll(PRODUCT_COLLECTION);
+    return res.json({ products: productList });
+  } catch (error) {
+    console.log(`[products/pd] error : ${error}`);
+    return res.json({});
+  }
+});
+
+const getAll = async collection_id => {
+  let resultList = [];
+  await fb
+    .getDB()
+    .collection(collection_id)
+    .get()
+    .then(snapshot => {
+      snapshot.forEach(doc => {
+        let prod = doc.data();
+        prod["id"] = doc.id;
+        resultList.push(prod);
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      return resultList;
+    });
+  return resultList;
+};
+
 const saveDoc = async (collection_id, product) => {
   return await fb
     .getDB()

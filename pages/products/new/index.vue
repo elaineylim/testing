@@ -3,88 +3,62 @@
     <contentCard class="mt-2 mb-4">
       <template v-slot:title>PRODUCT CALCULATION</template>
       <template v-slot:content>
-        <div
-          class="flex grid grid-cols-1 md:grid-cols-3 items-center pt-4 justify-center"
-        >
+        <div class="flex grid grid-cols-1 md:grid-cols-3 items-center pt-4 justify-center">
           <div class="items-center my-2">
-            <div
-              class="font-sans text-sm font-thin tracking-wide text-teal-700 text-center"
-            >
+            <div class="font-sans text-sm font-thin tracking-wide text-teal-700 text-center">
               BEANS WEIGHT
               <br />BEFORE ROAST (KG)
             </div>
             <div
               class="font-sans font-medium text-3xl tracking-wide text-teal-600 text-center"
-            >
-              {{ weightBeforeRoast ? weightBeforeRoast : 0.0 }}
-            </div>
+            >{{ weightBeforeRoast ? weightBeforeRoast : 0.0 }}</div>
           </div>
           <div class="items-center my-2">
-            <div
-              class="font-sans text-sm font-thin tracking-wide text-teal-700 text-center"
-            >
+            <div class="font-sans text-sm font-thin tracking-wide text-teal-700 text-center">
               BEANS WEIGHT
               <br />AFTER ROAST (KG)
             </div>
             <div
               class="font-sans font-medium text-3xl tracking-wide text-teal-600 text-center"
-            >
-              {{ weightAfterRoast ? weightAfterRoast : 0.0 }}
-            </div>
+            >{{ weightAfterRoast ? weightAfterRoast : 0.0 }}</div>
           </div>
           <div class="items-center my-2">
             <div
               class="font-sans text-sm font-thin tracking-wide text-teal-700 text-center"
-            >
-              WATER LOSS (%)
-            </div>
+            >WATER LOSS (%)</div>
             <div
               class="font-sans text-sm font-medium text-3xl tracking-wide text-teal-600 text-center"
-            >
-              {{ waterLose() | prettyAmount }}%
-            </div>
+            >{{ waterLose() | prettyAmount }}%</div>
           </div>
 
           <div class="items-center my-2">
-            <div
-              class="font-sans text-sm font-thin tracking-wide text-teal-700 text-center"
-            >
+            <div class="font-sans text-sm font-thin tracking-wide text-teal-700 text-center">
               STOCK PRICE
               <br />PER KG (MYR)
             </div>
             <div
               class="font-sans text-sm font-medium text-3xl tracking-wide text-teal-600 text-center"
-            >
-              {{ stockPerKg() | prettyAmount }}
-            </div>
+            >{{ stockPerKg() | prettyAmount }}</div>
           </div>
 
           <div class="items-center my-2">
-            <div
-              class="font-sans text-sm font-thin tracking-wide text-teal-700 text-center"
-            >
+            <div class="font-sans text-sm font-thin tracking-wide text-teal-700 text-center">
               ROASTED BEANS COST
               <br />PER KG (MYR)
             </div>
             <div
               class="font-sans text-sm font-medium text-3xl tracking-wide text-teal-600 text-center"
-            >
-              {{ roastedBeanPerKg() | prettyAmount }}
-            </div>
+            >{{ roastedBeanPerKg() | prettyAmount }}</div>
           </div>
           <div class="items-center my-2">
-            <div
-              class="font-sans text-sm font-thin tracking-wide text-teal-700 text-center"
-            >
+            <div class="font-sans text-sm font-thin tracking-wide text-teal-700 text-center">
               BEANS COST PER PACK
               <br />
               (MYR BY {{ weightPerPack ? weightPerPack : 0 }}GRAM)
             </div>
             <div
               class="font-sans text-sm font-medium text-3xl tracking-wide text-teal-600 text-center"
-            >
-              {{ roastedBeanPerPack() | prettyAmount }}
-            </div>
+            >{{ roastedBeanPerPack() | prettyAmount }}</div>
           </div>
         </div>
       </template>
@@ -102,9 +76,7 @@
               @input="setBean($event)"
               :disabled="false"
             />
-            <i
-              class="fas fa-globe-asia absolute top-0 text-gray-500 right-0 p-3"
-            ></i>
+            <i class="fas fa-globe-asia absolute top-0 text-gray-500 right-0 p-3"></i>
           </div>
           <div class="my-2 mx-2 relative md:col-span-2">
             <selectElement
@@ -113,12 +85,7 @@
               @select="setRoastLevel($event)"
             >
               <template v-slot:select-options>
-                <option
-                  v-for="roast in roastLevelList"
-                  :key="roast"
-                  :value="roast"
-                  >{{ roast }}</option
-                >
+                <option v-for="roast in roastLevelList" :key="roast" :value="roast">{{ roast }}</option>
               </template>
             </selectElement>
           </div>
@@ -131,9 +98,7 @@
               @input="setWeightPerPack($event)"
               :disabled="false"
             />
-            <i
-              class="fas fa-globe-asia absolute top-0 text-gray-500 right-0 p-3"
-            ></i>
+            <i class="fas fa-globe-asia absolute top-0 text-gray-500 right-0 p-3"></i>
           </div>
           <div class="my-2 mx-2 relative md:col-span-2">
             <inputElement
@@ -144,9 +109,7 @@
               @input="setWeightBeforeRoast($event)"
               :disabled="false"
             />
-            <i
-              class="fas fa-globe-asia absolute top-0 text-gray-500 right-0 p-3"
-            ></i>
+            <i class="fas fa-globe-asia absolute top-0 text-gray-500 right-0 p-3"></i>
           </div>
           <div class="my-2 mx-2 relative md:col-span-2">
             <inputElement
@@ -157,9 +120,7 @@
               @input="setWeightAfterRoast($event)"
               :disabled="false"
             />
-            <i
-              class="fas fa-globe-asia absolute top-0 text-gray-500 right-0 p-3"
-            ></i>
+            <i class="fas fa-globe-asia absolute top-0 text-gray-500 right-0 p-3"></i>
           </div>
           <div class="my-2 mx-2 relative md:col-span-2">
             <inputElement
@@ -170,18 +131,14 @@
               @input="setProfile($event)"
               :disabled="false"
             />
-            <i
-              class="fas fa-globe-asia absolute top-0 text-gray-500 right-0 p-3"
-            ></i>
+            <i class="fas fa-globe-asia absolute top-0 text-gray-500 right-0 p-3"></i>
           </div>
           <div class="my-2 mx-4 md:col-span-2">
             <button
-              class="transition duration-500 ease-in-out bg-teal-600 font-sans text-white py-2 px-4 rounded-sm shadow-xl hover:bg-teal-700 focus:outline-none active: outline-none w-full"
+              class="transition duration-500 ease-in-out bg-teal-600 font-sans text-white py-2 px-4 rounded-sm shadow-xl hover:bg-teal-700 focus:outline-none active:outline-none w-full"
               type="button"
               @click="createProduct"
-            >
-              New Product
-            </button>
+            >New Product</button>
           </div>
         </form>
       </template>
