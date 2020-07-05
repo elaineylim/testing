@@ -17,15 +17,33 @@ router.get(
   asyncHandler(async function(req, res, next) {
     return res.json({
       barChartData: {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May"],
+        labels: [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec"
+        ],
         datasets: [
           {
             label: "Income",
             backgroundColor: [
+              chartColors.red,
+              chartColors.orange,
+              chartColors.yellow,
               chartColors.green,
-              chartColors.green,
-              chartColors.green,
-              chartColors.green,
+              chartColors.blue,
+              chartColors.purple,
+              chartColors.grey,
+              chartColors.teal,
+              chartColors.red,
               chartColors.green
             ],
             data: [5, 3, 4, 6, 4]
