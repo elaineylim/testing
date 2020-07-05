@@ -82,7 +82,7 @@ export default {
       toggleProfileMenu: "dashboard/toggleProfileMenu"
     }),
     ...mapActions({
-      signout: "auth/firebaseLogout"
+      signOut: "auth/firebaseLogout"
     })
   }
 };
