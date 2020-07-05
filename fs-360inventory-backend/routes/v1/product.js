@@ -4,6 +4,21 @@ const asyncHandler = require("express-async-handler");
 const fb = require("../../services/firebase");
 const PRODUCT_COLLECTION = "products";
 
+router.use(
+  asyncHandler(async function(req, res, next) {
+    const headers = req.headers;
+    try {
+      if (!fb.verifyIdToken(headers.id_token, headers.uid)) {
+        return res.json({ status: "Access is prohibited" });
+      }
+      next();
+    } catch (err) {
+      console.error(`[Users API Middleware] : ${err}`);
+      return res.json({ status: "Access is prohibited" });
+    }
+  })
+);
+
 router.post(
   "/new",
   asyncHandler(async function(req, res, next) {

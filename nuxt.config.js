@@ -1,3 +1,4 @@
+require("dotenv").config();
 const firebaseConfig = process.env.FS360_FB_CRED
   ? process.env.FS360_FB_CRED
   : "{}";
@@ -68,23 +69,22 @@ module.exports = {
     // Doc: https://axios.nuxtjs.org/usage
     "@nuxtjs/axios",
     // Doc: https://github.com/nuxt-community/dotenv-module
-    "@nuxtjs/dotenv"[
-      [
-        "@nuxtjs/firebase",
-        {
-          config: JSON.parse(firebaseConfig),
-          services: {
-            realtimeDb: false,
-            auth: {
-              persistence: "session",
-              initialize: {
-                onAuthStateChangedAction: "auth/onAuthStateChangedAction"
-              },
-              ssr: true
-            }
+    "@nuxtjs/dotenv",
+    [
+      "@nuxtjs/firebase",
+      {
+        config: JSON.parse(firebaseConfig),
+        services: {
+          realtimeDb: false,
+          auth: {
+            persistence: "session",
+            initialize: {
+              onAuthStateChangedAction: "auth/onAuthStateChangedAction"
+            },
+            ssr: true
           }
         }
-      ]
+      }
     ]
   ],
   /*

@@ -45,8 +45,8 @@ export const mutations = {
 };
 
 export const actions = {
-  async createProduct({ state, commit }) {
-    await this.$apis.product.new(state);
+  async createProduct({ state, commit }, user) {
+    await this.$apis.product.new(state, user.uid, user.idToken);
     commit("resetStore"); // Reset the State
     this.$router.push("/products"); //Move back to product page
   },
