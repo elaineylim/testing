@@ -1,5 +1,5 @@
 export default axios => ({
-  revenue: () => {
+  revenue: (uid, id_token) => {
     let config = {
       headers: {
         UID: uid,
