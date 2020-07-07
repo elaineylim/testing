@@ -17,6 +17,7 @@ import NaviWrapper from "~/components/navi/Wrapper.vue";
 import MenuWrapper from "~/components/menu/Wrapper.vue";
 export default {
   name: "dashboard",
+  middleware: "authentication",
   components: {
     NaviWrapper,
     MenuWrapper

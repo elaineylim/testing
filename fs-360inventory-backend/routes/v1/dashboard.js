@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const asyncHandler = require("express-async-handler");
+const fb = require("../../services/firebase");
 
 const chartColors = {
   red: "rgb(255, 99, 132)",
@@ -12,20 +13,53 @@ const chartColors = {
   grey: "rgb(201, 203, 207)"
 };
 
+router.use(
+  asyncHandler(async function(req, res, next) {
+    const headers = req.headers;
+    try {
+      if (!fb.verifyIdToken(headers.id_token, headers.uid)) {
+        return res.json({ status: "Access is prohibited" });
+      }
+      next();
+    } catch (err) {
+      console.error(`[Users API Middleware] : ${err}`);
+      return res.json({ status: "Access is prohibited" });
+    }
+  })
+);
+
 router.get(
   "/revenue",
   asyncHandler(async function(req, res, next) {
     return res.json({
       barChartData: {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May"],
+        labels: [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec"
+        ],
         datasets: [
           {
             label: "Income",
             backgroundColor: [
+              chartColors.red,
+              chartColors.orange,
+              chartColors.yellow,
               chartColors.green,
-              chartColors.green,
-              chartColors.green,
-              chartColors.green,
+              chartColors.blue,
+              chartColors.purple,
+              chartColors.grey,
+              chartColors.teal,
+              chartColors.red,
               chartColors.green
             ],
             data: [5, 3, 4, 6, 4]

@@ -176,9 +176,9 @@
           </div>
           <div class="my-2 mx-4 md:col-span-2">
             <button
-              class="transition duration-500 ease-in-out bg-teal-600 font-sans text-white py-2 px-4 rounded-sm shadow-xl hover:bg-teal-700 focus:outline-none active: outline-none w-full"
+              class="transition duration-500 ease-in-out bg-teal-600 font-sans text-white py-2 px-4 rounded-sm shadow-xl hover:bg-teal-700 focus:outline-none active:outline-none w-full"
               type="button"
-              @click="createProduct"
+              @click="createProduct(user)"
             >
               New Product
             </button>
@@ -204,6 +204,7 @@ export default {
   },
   computed: {
     ...mapState({
+      user: state => state.auth.user,
       bean: state => state.product.bean,
       roastLevel: state => state.product.roastLevel,
       roastLevelList: state => state.product.roastLevelList,
